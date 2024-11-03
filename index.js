@@ -1,10 +1,11 @@
 const http = require("http");
+const { Log, Decors } = require('./decorators');
 
 class Server {
-  getHelloWorld(req, res) {
+  getHelloWorld = Decors((req, res) => {
     res.writeHead(200, { "Content-Type": "text/plain" });
     res.end("Hello, World!");
-  }
+  }, [Log]);
 
   postProtectedData(req, res) {
     res.writeHead(200, { "Content-Type": "application/json" });
