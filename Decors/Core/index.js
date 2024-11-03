@@ -5,10 +5,12 @@ function Decors(handler, decorators) {
   }, handler);
 }
 
-function Log(handler) {
-  return function (req, res) {
-    console.log(`Log: Acessando rota ${req.method} ${req.url}`);
-    return handler(req, res);
+function Log(logger) {
+  return function (handler) {
+    return function (req, res) {
+      logger.log(`Acessando rota ${req.method} ${req.url}`);
+      return handler(req, res);
+    };
   };
 }
 // Exporta os decorators

@@ -1,11 +1,17 @@
 const http = require("http");
-const { Log, Decors } = require('./decorators');
+const { LoggerService } = require("./Decors/Core/logger.service");
+const { Log, Decors } = require("./Decors/Core");
+const { DependencyContainer } = require("./Decors/Core/container");
+
+const container = new DependencyContainer();
+container.register("logger", new LoggerService());
+const logger = container.get('logger');
 
 class Server {
   getHelloWorld = Decors((req, res) => {
     res.writeHead(200, { "Content-Type": "text/plain" });
     res.end("Hello, World!");
-  }, [Log]);
+  }, [Log(logger)]);
 
   postProtectedData(req, res) {
     res.writeHead(200, { "Content-Type": "application/json" });
