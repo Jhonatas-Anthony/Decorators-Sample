@@ -13,6 +13,3 @@ class DependencyContainer {
 }
 
 module.exports = { DependencyContainer };
-
-// Configura o container
-

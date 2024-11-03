@@ -13,12 +13,12 @@ class Server {
     res.end("Hello, World!");
   }, [Log(logger)]);
 
-  postProtectedData(req, res) {
+  postProtectedData = Decors((req, res) => {
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(
       JSON.stringify({ message: "Acesso autorizado e dados recebidos!" })
     );
-  }
+  }, [Log(logger)]);
 }
 
 const serverInstance = new Server();
